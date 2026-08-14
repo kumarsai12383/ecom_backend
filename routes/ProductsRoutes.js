@@ -8,7 +8,7 @@ const {
   updateProduct,
   deleteProduct,
   createProducts,
-  
+  health
 } = require("../controllers/productControllers");
 
 // Get all products
@@ -25,4 +25,5 @@ router.put("/d_05072005/:id", updateProduct);
 router.delete("/d_05072005/:id", deleteProduct);
 //insert many
 router.post("/bulk", createProducts);
+router.get("/health", health);
 module.exports = router;
