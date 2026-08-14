@@ -104,13 +104,7 @@ const createProducts = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-const health = async (req, res) => {
-  try{
-    res.status(200).json({ message: "API is healthy" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-}
+
 module.exports = {
   getAllProducts,
   getProductById,
@@ -118,5 +112,5 @@ module.exports = {
   updateProduct,
   deleteProduct,
   createProducts,
-  health
+
 };
