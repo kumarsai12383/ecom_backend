@@ -50,15 +50,13 @@ This API provides a ready-to-use collection of product data that frontend develo
 ### Local
 
 ```text
-http://localhost:3000
+https://ecom-backend-5z52.onrender.com
 ```
 
 ### Production
 
-Replace this with your deployed API URL:
-
 ```text
-https://your-api-url.com
+https://ecom-backend-5z52.onrender.com
 ```
 
 All product endpoints start with:
@@ -120,7 +118,7 @@ GET /api/products
 Example:
 
 ```text
-http://localhost:3000/api/products
+https://ecom-backend-5z52.onrender.com/api/products
 ```
 
 ---
@@ -136,7 +134,7 @@ GET /api/products/:id
 Example:
 
 ```text
-http://localhost:3000/api/products/1001
+https://ecom-backend-5z52.onrender.com/api/products/1001
 ```
 
 This searches using:
@@ -459,7 +457,7 @@ Example response:
 
 ```js
 const response = await fetch(
-  "http://localhost:3000/api/products"
+  "https://ecom-backend-5z52.onrender.com/api/products"
 );
 
 const data = await response.json();
@@ -478,7 +476,7 @@ function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/products")
+    fetch("https://ecom-backend-5z52.onrender.com/api/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);
@@ -655,7 +653,7 @@ You can test the API using:
 Example:
 
 ```text
-GET http://localhost:3000/api/products
+GET https://ecom-backend-5z52.onrender.com/api/products
 ```
 
 ---
