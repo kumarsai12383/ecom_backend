@@ -10,7 +10,7 @@ This API provides a ready-to-use collection of product data that frontend develo
 
 ## 🚀 Features
 
-- 50 product records
+- 100+ product records
 - Product images
 - Product categories
 - Product brands
