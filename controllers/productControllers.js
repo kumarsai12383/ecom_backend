@@ -17,10 +17,10 @@ const getAllProducts = async (req, res) => {
       sortOption.price = 1;
     }
     if (category) {
-      filter.category = category;
+      filter.category = {$in: category};
     }
     if (brand) {
-      filter.brand = brand;
+      filter.brand = {$in: brand};
     }
     if (minPrice) {
       filter.price = { ...filter.price, $gte: parseFloat(minPrice) };
@@ -28,6 +28,7 @@ const getAllProducts = async (req, res) => {
     if (maxPrice) {
       filter.price = { ...filter.price, $lte: parseFloat(maxPrice) };
     }
+   
     const products = await Product.find(filter).sort(sortOption).skip(skip).limit(limit).select("name description price category brand image rating stock -_id");
 
     res.json({ data: products });
@@ -39,7 +40,7 @@ const getAllProducts = async (req, res) => {
 // Get a product by ID
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findOne({ product_id: req.params.id }).select("name description price category brand image rating stock -_id");
+    const product = await Product.findOne({ product_id: req.params.id }).select("name description price category brand image product_id rating stock -_id");
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
