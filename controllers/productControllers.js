@@ -4,7 +4,7 @@ const Product = require("../models/productDB");
 // Get all products
 const getAllProducts = async (req, res) => {
   try {
-    const { category, minPrice, maxPrice, sort, brand} = req.query;
+    const { category, minPrice, maxPrice, sort, brand,search } = req.query;
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit);
 
@@ -28,7 +28,14 @@ const getAllProducts = async (req, res) => {
     if (maxPrice) {
       filter.price = { ...filter.price, $lte: parseFloat(maxPrice) };
     }
-   
+    if (search) {
+    filter.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { brand: { $regex: search, $options: "i" } },
+        { category: { $regex: search, $options: "i" } },
+    ];
+}
     const products = await Product.find(filter).sort(sortOption).skip(skip).limit(limit).select("product_id name description price category brand image rating stock -_id");
 
     res.json({ data: products });
