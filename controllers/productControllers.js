@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const Product = require("../models/productDB");
 
-// Get all products
+// Get all products and using filters by querying
 const getAllProducts = async (req, res) => {
   try {
-    const { category, minPrice, maxPrice, sort, brand,search } = req.query;
+    const { category, minPrice, maxPrice, sort, brand, search } = req.query;
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit);
 
@@ -13,14 +13,16 @@ const getAllProducts = async (req, res) => {
     const sortOption = {};
     if (sort == "desc") {
       sortOption.price = -1;
-    } else if(sort == "asc") {
+    } else if (sort == "asc") {
       sortOption.price = 1;
+    } else if (sort == "rating") {
+      sortOption.rating = -1;
     }
     if (category) {
-      filter.category = {$in: category};
+      filter.category = { $in: category };
     }
     if (brand) {
-      filter.brand = {$in: brand};
+      filter.brand = { $in: brand };
     }
     if (minPrice) {
       filter.price = { ...filter.price, $gte: parseFloat(minPrice) };
@@ -29,14 +31,20 @@ const getAllProducts = async (req, res) => {
       filter.price = { ...filter.price, $lte: parseFloat(maxPrice) };
     }
     if (search) {
-    filter.$or = [
+      filter.$or = [
         { name: { $regex: search, $options: "i" } },
         { description: { $regex: search, $options: "i" } },
         { brand: { $regex: search, $options: "i" } },
         { category: { $regex: search, $options: "i" } },
-    ];
-}
-    const products = await Product.find(filter).sort(sortOption).skip(skip).limit(limit).select("product_id name description price category brand image rating stock -_id");
+      ];
+    }
+    const products = await Product.find(filter)
+      .sort(sortOption)
+      .skip(skip)
+      .limit(limit)
+      .select(
+        "product_id name description price category brand image rating stock -_id",
+      );
 
     res.json({ data: products });
   } catch (error) {
@@ -47,7 +55,9 @@ const getAllProducts = async (req, res) => {
 // Get a product by ID
 const getProductById = async (req, res) => {
   try {
-    const product = await Product.findOne({ product_id: req.params.id }).select("name description price category brand image product_id rating stock -_id");
+    const product = await Product.findOne({ product_id: req.params.id }).select(
+      "name description price category brand image product_id rating stock -_id",
+    );
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -120,5 +130,4 @@ module.exports = {
   updateProduct,
   deleteProduct,
   createProducts,
-
 };
