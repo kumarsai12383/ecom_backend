@@ -27,6 +27,7 @@ This API provides a ready-to-use collection of product data that frontend develo
 - Sort products by price
 - Pagination
 - Field selection
+- Search by product name or description or brand or category
 - Query parameters
 - MongoDB + Mongoose
 - RESTful API structure
@@ -282,6 +283,89 @@ Equivalent MongoDB condition:
 ```
 
 ---
+🔍 SEARCH
+
+The API supports product search using the search query parameter.
+
+Search checks both the product name and description fields.
+
+Search by product name or description
+
+GET /api/products?search=iphone
+
+Example:
+
+https://ecom-backend-5z52.onrender.com/api/products?search=iphone
+
+The backend uses MongoDB $regex and $or:
+
+if (search) {
+    filter.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } }
+    ];
+}
+
+$regex
+
+$regex searches for text inside a string.
+
+For example:
+
+?search=phone
+
+can match:
+
+iPhone 16
+Nothing Phone
+Smartphone
+
+$options: "i"
+
+The "i" makes the search case-insensitive.
+
+Therefore these can match the same products:
+
+?search=iphone
+?search=IPHONE
+?search=iPhone
+
+$or
+
+$or means the search can match either field:
+
+name contains the search text
+OR
+description contains the search text
+
+Search + Other Filters
+
+Search can be combined with other query parameters.
+
+Example:
+
+/api/products?search=iphone&category=Mobiles
+
+Meaning:
+
+Search for "iphone"
+AND
+category must be "Mobiles"
+
+Another example:
+
+/api/products?search=phone&minPrice=30000&maxPrice=100000&sort=asc
+
+Meaning:
+
+Search for "phone"
+AND
+price >= 30000
+AND
+price <= 100000
+AND
+sort by lowest price first
+
 
 # 🔃 SORTING
 
@@ -441,6 +525,7 @@ Example response:
 | GET | `/api/products/:id` | Get one product |
 | GET | `/api/products?category=Mobiles` | Filter by category |
 | GET | `/api/products?brand=Apple` | Filter by brand |
+| GET | `/api/products?search=Apple` | search by brand, name |
 | GET | `/api/products?minPrice=50000` | Minimum price |
 | GET | `/api/products?maxPrice=100000` | Maximum price |
 | GET | `/api/products?minPrice=50000&maxPrice=100000` | Price range |
@@ -520,6 +605,16 @@ export default Products;
 
 ```text
 /api/products?category=Mobiles
+```
+### Search for iPhone
+
+```text
+/api/products?search=iphone
+```
+### Search for iPhone and filter by category
+
+```text
+/api/products?search=iphone&category=Mobiles
 ```
 
 ### Get all Apple products
