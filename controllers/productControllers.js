@@ -29,7 +29,7 @@ const getAllProducts = async (req, res) => {
       filter.price = { ...filter.price, $lte: parseFloat(maxPrice) };
     }
    
-    const products = await Product.find(filter).sort(sortOption).skip(skip).limit(limit).select("name description price category brand image rating stock -_id");
+    const products = await Product.find(filter).sort(sortOption).skip(skip).limit(limit).select("product_id name description price category brand image rating stock -_id");
 
     res.json({ data: products });
   } catch (error) {
