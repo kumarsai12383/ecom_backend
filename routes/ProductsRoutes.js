@@ -10,7 +10,6 @@ const {
   updateProduct,
   deleteProduct,
   createProducts,
-  
 } = require("../controllers/productControllers");
 
 // Get all products
@@ -18,7 +17,6 @@ router.get("/", getAllProducts);
 // Get a product by ID
 router.get("/:id", getProductById);
 // Get products by filter
-
 // Create a new product
 router.post("/" + process.env.CREATEPRODUCTROUTE + "/", createProduct);
 // Update a product by ID
