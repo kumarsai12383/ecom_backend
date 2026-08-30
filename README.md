@@ -51,13 +51,13 @@ This API provides a ready-to-use collection of product data that frontend develo
 ### Local
 
 ```text
-https://ecom-backend-5z52.onrender.com
+https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net
 ```
 
 ### Production
 
 ```text
-https://ecom-backend-5z52.onrender.com
+https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net
 ```
 
 All product endpoints start with:
@@ -119,7 +119,7 @@ GET /api/products
 Example:
 
 ```text
-https://ecom-backend-5z52.onrender.com/api/products
+https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products
 ```
 
 ---
@@ -135,7 +135,7 @@ GET /api/products/:id
 Example:
 
 ```text
-https://ecom-backend-5z52.onrender.com/api/products/1001
+https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products/1001
 ```
 
 This searches using:
@@ -295,7 +295,7 @@ GET /api/products?search=iphone
 
 Example:
 
-https://ecom-backend-5z52.onrender.com/api/products?search=iphone
+https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products?search=iphone
 
 The backend uses MongoDB $regex and $or:
 
@@ -542,7 +542,7 @@ Example response:
 
 ```js
 const response = await fetch(
-  "https://ecom-backend-5z52.onrender.com/api/products"
+  "https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products"
 );
 
 const data = await response.json();
@@ -561,7 +561,7 @@ function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://ecom-backend-5z52.onrender.com/api/products")
+    fetch("https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);
@@ -748,7 +748,7 @@ You can test the API using:
 Example:
 
 ```text
-GET https://ecom-backend-5z52.onrender.com/api/products
+GET https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products
 ```
 
 ---
