@@ -18,6 +18,9 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+app.get("/", (req, res) => {
+  res.send("Welcome to the API, please use the /api endpoint to access the API routes.");
+});
 app.use("/api/products", productRoutes);
 app.get("/api/health", (req, res) => {
   res.status(200).json({ message: "API is healthy" });
