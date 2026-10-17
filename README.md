@@ -51,7 +51,7 @@ This API provides a ready-to-use collection of product data that frontend develo
 ### Production
 
 ```text
-https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net
+ecom-backend-cphebqayekhwczfx.centralindia-01.azurewebsites.net
 ```
 
 All product endpoints start with:
@@ -113,7 +113,7 @@ GET /api/products
 Example:
 
 ```text
-https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products
+ecom-backend-cphebqayekhwczfx.centralindia-01.azurewebsites.net/api/products
 ```
 
 ---
@@ -129,7 +129,7 @@ GET /api/products/:id
 Example:
 
 ```text
-https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products/1001
+ecom-backend-cphebqayekhwczfx.centralindia-01.azurewebsites.net/api/products/1001
 ```
 
 This searches using:
@@ -289,7 +289,7 @@ GET /api/products?search=iphone
 
 Example:
 
-https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products?search=iphone
+ecom-backend-cphebqayekhwczfx.centralindia-01.azurewebsites.net/api/products?search=iphone
 
 The backend uses MongoDB $regex and $or:
 
@@ -536,7 +536,7 @@ Example response:
 
 ```js
 const response = await fetch(
-  "https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products"
+  "https://ecom-backend-cphebqayekhwczfx.centralindia-01.azurewebsites.net/api/products"
 );
 
 const data = await response.json();
@@ -555,7 +555,7 @@ function Products() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch("https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products")
+    fetch("https://ecom-backend-cphebqayekhwczfx.centralindia-01.azurewebsites.net/api/products")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);
@@ -742,7 +742,7 @@ You can test the API using:
 Example:
 
 ```text
-GET https://ecombackend-c4gwf8b4bnbsgrga.centralindia-01.azurewebsites.net/api/products
+GET https://ecom-backend-cphebqayekhwczfx.centralindia-01.azurewebsites.net/api/products
 ```
 
 ---
