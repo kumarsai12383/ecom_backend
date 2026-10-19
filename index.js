@@ -19,7 +19,7 @@ mongoose
     console.log(error);
   });
 app.get("/", (req, res) => {
-  res.send("Welcome to the API, please use the /api endpoint to access the API routes.");
+  res.send("Welcome to the Kumar sai Ecom_backend project, please use the /api endpoints to access the API routes. For more info check the repo https://github.com/kumarsai12383/ecom_backend");
 });
 app.use("/api/products", productRoutes);
 app.get("/api/health", (req, res) => {
